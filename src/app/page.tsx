@@ -1,5 +1,4 @@
-"use client"; 
-
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
@@ -283,10 +282,10 @@ export default function WeddingInvitation() {
                   <Compass size={18} className="text-[#E8A25D] animate-[spin_4s_linear_infinite]" />
                 </div>
                 <div className="space-y-1">
-                  <p className="text-2xl md:text-4xl font-serif tracking-[0.1em] text-white drop-shadow-2xl">March 6, 2026, Friday</p>
+                  <p className="text-2xl md:text-4xl font-serif tracking-[0.1em] text-white drop-shadow-2xl">March 5 2026, Thursday</p>
                   <div className="flex items-center justify-center gap-2 md:gap-3">
                     <MapPin size={14} className="text-[#B9E2E5]" />
-                    <p className="text-[10px] md:text-[14px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-[#B9E2E5] drop-shadow-lg">Bhavani</p>
+                    <p className="text-[10px] md:text-[14px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-[#B9E2E5] drop-shadow-lg">Bhavani • Tamil Nadu</p>
                   </div>
                 </div>
                 <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#E8A25D] text-[#1B3C40] text-[8px] md:text-[9px] font-black uppercase tracking-[0.3em] px-5 md:px-6 py-1 rounded-full shadow-lg">Save the Date</div>
@@ -354,7 +353,7 @@ export default function WeddingInvitation() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="grid md:grid-cols-2 gap-12">
             {[
-              { type: "Golden Hour Reception", date: "March 5, 2026", time: "07:00 PM onwards", venue: "KMP Mahal", loc: "Bhavani, Tamil Nadu", icon: <Sun size={32} className="text-[#E8A25D]" />, img: "https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9ae0a7ac-4ccc-4801-be29-26bc4c34680f/KMP-Mahal-1769027161801.jpeg?width=8000&height=8000&resize=contain" },
+              { type: "Golden Hour Reception", date: "March 5, 2026", time: "07:00 PM onwards", venue: "KMP Mahal", loc: "Bhavani, Tamil Nadu", icon: <Sun size={32} className="text-[#E8A25D]" />, img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=1200" },
               { type: "Sunrise Ceremony", date: "March 5, 2026", time: "07:00 AM - 08:30 AM", venue: "Sangameswarar Temple", loc: "Kooduthurai, Tamil Nadu", icon: <Heart size={24} className="text-[#E8A25D] fill-[#E8A25D]" />, img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=1200" }
             ].map((event, i) => (
               <motion.div key={i} variants={fadeInUp} whileHover={{ y: -10, transition: { type: "spring", stiffness: 300 } }} className="group relative">
@@ -394,22 +393,22 @@ export default function WeddingInvitation() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 auto-rows-[300px] md:auto-rows-[400px]">
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="col-span-2 row-span-2 overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9ae0a7ac-4ccc-4801-be29-26bc4c34680f/Image4-resized-1769022338202.jpg?width=8000&height=8000&resize=contain" alt="Gallery 4" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image1.png" alt="Gallery 1" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="col-span-2 overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9ae0a7ac-4ccc-4801-be29-26bc4c34680f/Image3-resized-1769022339281.jpg?width=8000&height=8000&resize=contain" alt="Gallery 3" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image3.jpg" alt="Gallery 3" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9ae0a7ac-4ccc-4801-be29-26bc4c34680f/Image1-1769022338211.png?width=8000&height=8000&resize=contain" alt="Gallery 1" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image4.jpg" alt="Gallery 4" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9ae0a7ac-4ccc-4801-be29-26bc4c34680f/Image5-resized-1769022339291.jpg?width=8000&height=8000&resize=contain" alt="Gallery 5" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image5.jpg" alt="Gallery 5" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
-            <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="col-span-2 overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9ae0a7ac-4ccc-4801-be29-26bc4c34680f/Image7-resized-1769022339282.webp?width=8000&height=8000&resize=contain" alt="Gallery 7" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
+              <img src="/Image6.jpg" alt="Gallery 6" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
-            <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="col-span-2 overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/9ae0a7ac-4ccc-4801-be29-26bc4c34680f/Image10-1769032471765.png?width=8000&height=8000&resize=contain" alt="Gallery 9" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
+              <img src="/Image7.png" alt="Gallery 7" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
           </motion.div>
         </div>
@@ -441,7 +440,7 @@ export default function WeddingInvitation() {
                   <p className="text-sm font-bold text-[#1B3C40]/80 uppercase tracking-wider">Instructions</p>
                   <p className="text-[#1B3C40]/70 text-[15px]">From the bypass, take a local bus to Bhavani Bus Stand</p>
                 </div>
-                <Button className="w-full bg-[#1B3C40] hover:bg-[#2A5257] text-white rounded-full h-12 tracking-[0.2em] text-[10px] font-bold transition-all duration-500"><MapPin size={14} className="mr-2" />LAKSHMI NAGAR BYPASS</Button>
+                <Button onClick={() => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://maps.google.com/?q=Bhavani+Lakshmi+Nagar+Bypass" } }, "*")} className="w-full bg-[#1B3C40] hover:bg-[#2A5257] text-white rounded-full h-12 tracking-[0.2em] text-[10px] font-bold transition-all duration-500"><MapPin size={14} className="mr-2" />OPEN IN GOOGLE MAPS</Button>
               </div>
             </motion.div>
 
@@ -467,7 +466,20 @@ export default function WeddingInvitation() {
             </motion.div>
           </motion.div>
 
-
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.6 }} className="mt-10 space-y-4">
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-2xl border border-[#1B3C40]/5 shadow-sm">
+                <Bus size={18} className="text-[#E8A25D]" />
+                <p className="text-sm text-[#1B3C40]/80 font-medium">Local Bus Numbers to Bhavani Bus Stand: <span className="font-bold text-[#1B3C40]">5</span> or <span className="font-bold text-[#1B3C40]">3</span></p>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-[#1B3C40]/5 shadow-sm">
+                <Compass size={16} className="text-[#E8A25D]" />
+                <p className="text-sm text-[#1B3C40]/70">Local buses and autos are frequently available from Bhavani Bus Stand.</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -524,19 +536,18 @@ export default function WeddingInvitation() {
       <footer className="py-12 bg-[#FDFBF7] text-[#1B3C40] relative border-t border-[#1B3C40]/5">
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="flex flex-col items-center gap-4">
-            <h2 className="text-4xl md:text-5xl font-stylish font-normal tracking-widest opacity-80">NaveeRitzz</h2>
+            <h2 className="text-4xl md:text-5xl font-serif italic font-light tracking-widest opacity-80">NaveeRitzz</h2>
             <motion.div animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} className="text-[#E8A25D]"><Heart size={20} fill="currentColor" /></motion.div>
           </motion.div>
         </div>
       </footer>
 
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Great+Vibes&family=Pinyon+Script&display=swap');
-        :root { --font-serif: 'Cormorant Garamond', serif; --font-sans: 'Montserrat', sans-serif; --font-accent: 'Great Vibes', cursive; --font-stylish: 'Pinyon Script', cursive; }
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Great+Vibes&display=swap');
+        :root { --font-serif: 'Cormorant Garamond', serif; --font-sans: 'Montserrat', sans-serif; --font-accent: 'Great Vibes', cursive; }
         body { font-family: var(--font-sans); scroll-behavior: smooth; }
         .font-serif { font-family: var(--font-serif); }
         .font-accent { font-family: var(--font-accent); }
-        .font-stylish { font-family: var(--font-stylish); }
         * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #FDFBF7; }
