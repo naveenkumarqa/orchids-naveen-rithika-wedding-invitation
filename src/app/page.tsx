@@ -122,12 +122,11 @@ export default function WeddingInvitation() {
   const [weddingCountdown, setWeddingCountdown] = useState<number>(0);
   const [metLabel, setMetLabel] = useState("Until Our Tides Meet");
   
-  const [wishes, setWishes] = useState<Wish[]>([
-    { id: 1, name: "Arun & Divya", message: "So happy for both of you! Wishing you a lifetime of happiness on this beautiful journey.", date: "Today" },
-    { id: 2, name: "Priya", message: "Can't wait to celebrate your big day! Congratulations Naveen and Rithika!", date: "Yesterday" }
-  ]);
+  const [wishes, setWishes] = useState<Wish[]>([]);
   const [newName, setNewName] = useState("");
   const [newMessage, setNewMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSending, setIsSending] = useState(false);
 
   const metDate = new Date(2025, 10, 14).getTime(); 
   const weddingDate = new Date(2026, 2, 5).getTime();
@@ -149,12 +148,47 @@ export default function WeddingInvitation() {
     return () => clearInterval(timer);
   }, [metDate, weddingDate]);
 
-  const handleSendWish = () => {
-    if (newName.trim() && newMessage.trim()) {
-      const newWish: Wish = { id: Date.now(), name: newName, message: newMessage, date: "Just now" };
-      setWishes([newWish, ...wishes]);
-      setNewName("");
-      setNewMessage("");
+  // Load messages from API on mount
+  useEffect(() => {
+    const loadMessages = async () => {
+      try {
+        const res = await fetch("/api/guestbook");
+        if (res.ok) {
+          const data = await res.json();
+          setWishes(data);
+        }
+      } catch (error) {
+        console.error("Error loading messages:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadMessages();
+  }, []);
+
+  const handleSendWish = async () => {
+    if (!newName.trim() || !newMessage.trim()) return;
+    
+    setIsSending(true);
+    try {
+      const res = await fetch("/api/guestbook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: newName, message: newMessage })
+      });
+
+      if (res.ok) {
+        const newWish = await res.json();
+        setWishes([newWish, ...wishes]);
+        setNewName("");
+        setNewMessage("");
+      } else {
+        console.error("Failed to save message");
+      }
+    } catch (error) {
+      console.error("Error sending wish:", error);
+    } finally {
+      setIsSending(false);
     }
   };
 
@@ -180,22 +214,23 @@ export default function WeddingInvitation() {
     </div>
   );
 
-  const BottleButton = ({ onClick, children }: { onClick: () => void, children: React.ReactNode }) => {
+  const BottleButton = ({ onClick, children, disabled = false }: { onClick: () => void, children: React.ReactNode, disabled?: boolean }) => {
     const [isPopping, setIsPopping] = useState(false);
     const handleClick = () => {
+      if (disabled) return;
       setIsPopping(true);
       setTimeout(() => { setIsPopping(false); onClick(); }, 800);
     };
     return (
-      <motion.button onClick={handleClick} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="relative w-full h-24 group mt-4">
+      <motion.button onClick={handleClick} whileHover={!disabled ? { scale: 1.02 } : {}} whileTap={!disabled ? { scale: 0.98 } : {}} disabled={disabled} className="relative w-full h-24 group mt-4">
         <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-[80%] h-4 bg-[#1B3C40]/10 rounded-full blur-xl" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative w-full h-16 bg-white backdrop-blur-xl border-2 border-[#B9E2E5] rounded-[2rem] flex items-center justify-center overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.15)] group-hover:shadow-[0_25px_50px_rgba(185,226,229,0.7)] transition-all duration-700">
+          <div className={`relative w-full h-16 bg-white backdrop-blur-xl border-2 border-[#B9E2E5] rounded-[2rem] flex items-center justify-center overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.15)] group-hover:shadow-[0_25px_50px_rgba(185,226,229,0.7)] transition-all duration-700 ${disabled ? "opacity-50 cursor-not-allowed" : ""}`}>
             <motion.div className="absolute bottom-0 left-0 right-0 h-[65%] bg-gradient-to-t from-[#B9E2E5]/70 to-[#B9E2E5]/30" animate={{ y: [0, 5, 0], skewY: [-1, 1, -1] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }} />
             <div className="relative z-20 flex items-center gap-4">
               <span className="text-[#1B3C40] tracking-[0.5em] text-[12px] font-normal uppercase drop-shadow-sm">{children}</span>
               <AnimatePresence>
-                {isPopping && (
+                {isPopping && !disabled && (
                   <motion.div initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }} className="text-[#E8A25D]">
                     <Sparkles size={16} />
                   </motion.div>
@@ -211,7 +246,7 @@ export default function WeddingInvitation() {
           </div>
           <div className="absolute -right-1 w-10 h-10 flex items-center">
             <div className="w-6 h-8 bg-white/10 backdrop-blur-xl border border-white/40 rounded-r-xl border-l-0" />
-            <motion.div className="w-4 h-6 bg-[#8B5E3C] rounded-sm shadow-md z-30" animate={isPopping ? { x: [0, 40], y: [0, -20], rotate: [0, 45], opacity: [1, 0] } : { x: 0, y: 0, rotate: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }} />
+            <motion.div className="w-4 h-6 bg-[#8B5E3C] rounded-sm shadow-md z-30" animate={isPopping && !disabled ? { x: [0, 40], y: [0, -20], rotate: [0, 45], opacity: [1, 0] } : { x: 0, y: 0, rotate: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }} />
           </div>
         </div>
         <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
@@ -448,7 +483,7 @@ export default function WeddingInvitation() {
                   <p className="text-sm font-bold text-[#1B3C40]/80 uppercase tracking-wider">Instructions</p>
                   <p className="text-[#1B3C40]/70 text-[15px]">From the bypass, take a local bus to Bhavani Bus Stand</p>
                 </div>
-                <Button onClick={() => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://maps.google.com/?q=Bhavani+Lakshmi+Nagar+Bypass" } }, "*")} className="w-full bg-[#1B3C40] hover:bg-[#2A5257] text-white rounded-full h-12 tracking-[0.2em] text-[10px] font-bold transition-all duration-500"><MapPin size={14} className="mr-2" />OPEN IN GOOGLE MAPS</Button>
+                <Button onClick={() => window.parent.postMessage({ type: "OPEN_EXTERNAL_URL", data: { url: "https://maps.google.com/?q=Bhavani+Lakshmi+Nagar+Bypass" } }, "*")} className="w-full bg-[#1B3C40] hover:bg-[#2A5257] text-white rounded-full h-12 tracking-[0.2em] text-[10px] font-bold transition-all duration-500"><MapPin size={14} className="mr-2" />BHAVANI BYPASS</Button>
               </div>
             </motion.div>
 
@@ -502,24 +537,36 @@ export default function WeddingInvitation() {
                   <Label className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#1B3C40]/30 ml-2">Sea Whisper</Label>
                   <Textarea value={newMessage} onChange={(e) => setNewMessage(e.target.value)} placeholder="Whisper your message to the tides..." className="bg-white border-none rounded-2xl min-h-[160px] p-6 text-sm focus-visible:ring-1 focus-visible:ring-[#B9E2E5] resize-none shadow-sm" />
                 </div>
-                <BottleButton onClick={handleSendWish}>SEND TO SHORE</BottleButton>
+                <BottleButton onClick={handleSendWish} disabled={isSending}>
+                  {isSending ? "SENDING..." : "SEND TO SHORE"}
+                </BottleButton>
               </div>
             </motion.div>
 
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="space-y-8">
-              <AnimatePresence mode="popLayout">
-                {wishes.map((wish, index) => (
-                  <motion.div key={wish.id} layout initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ delay: index * 0.1, duration: 0.6 }} whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }} className="p-10 bg-white rounded-[2.5rem] border border-[#1B3C40]/5 shadow-sm hover:shadow-md transition-all duration-500 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 p-8 opacity-[0.05] group-hover:opacity-10 transition-opacity"><Shell size={64} /></div>
-                    <Quote className="text-[#B9E2E5] mb-6" size={24} />
-                    <p className="text-xl font-serif italic text-[#1B3C40]/80 leading-relaxed">"{wish.message}"</p>
-                    <div className="mt-8 pt-8 border-t border-[#1B3C40]/5 flex justify-between items-center">
-                      <span className="font-serif text-xl tracking-tight">{wish.name}</span>
-                      <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#1B3C40]/30">{wish.date}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
+              {isLoading ? (
+                <motion.div className="text-center py-8">
+                  <p className="text-[#1B3C40]/60">Loading messages...</p>
+                </motion.div>
+              ) : wishes.length === 0 ? (
+                <motion.div className="text-center py-8">
+                  <p className="text-[#1B3C40]/60 italic">Be the first to leave a message!</p>
+                </motion.div>
+              ) : (
+                <AnimatePresence mode="popLayout">
+                  {wishes.map((wish, index) => (
+                    <motion.div key={wish.id} layout initial={{ opacity: 0, x: 60 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ delay: index * 0.1, duration: 0.6 }} whileHover={{ y: -5, transition: { type: "spring", stiffness: 300 } }} className="p-10 bg-white rounded-[2.5rem] border border-[#1B3C40]/5 shadow-sm hover:shadow-md transition-all duration-500 relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-8 opacity-[0.05] group-hover:opacity-10 transition-opacity"><Shell size={64} /></div>
+                      <Quote className="text-[#B9E2E5] mb-6" size={24} />
+                      <p className="text-xl font-serif italic text-[#1B3C40]/80 leading-relaxed">"{wish.message}"</p>
+                      <div className="mt-8 pt-8 border-t border-[#1B3C40]/5 flex justify-between items-center">
+                        <span className="font-serif text-xl tracking-tight">{wish.name}</span>
+                        <span className="text-[9px] uppercase tracking-[0.3em] font-bold text-[#1B3C40]/30">{wish.date}</span>
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              )}
             </motion.div>
           </div>
         </div>
