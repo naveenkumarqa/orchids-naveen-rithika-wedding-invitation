@@ -16,6 +16,7 @@ import {
   Wind,
   Sparkles,
   CalendarDays,
+  Clock,
   Ship,
   Bus,
   Train,
@@ -353,8 +354,8 @@ export default function WeddingInvitation() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={staggerContainer} className="grid md:grid-cols-2 gap-12">
             {[
-              { type: "Golden Hour Reception", date: "March 5, 2026", time: "07:00 PM onwards", venue: "KMP Mahal", loc: "Bhavani, Tamil Nadu", icon: <Sun size={32} className="text-[#E8A25D]" />, img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=1200" },
-              { type: "Sunrise Ceremony", date: "March 5, 2026", time: "07:00 AM - 08:30 AM", venue: "Sangameswarar Temple", loc: "Kooduthurai, Tamil Nadu", icon: <Heart size={24} className="text-[#E8A25D] fill-[#E8A25D]" />, img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=1200" }
+              { type: "Golden Hour Reception", date: "March 5, 2026, Thursday", time: "07:00 PM onwards", venue: "KMP Mahal", loc: "Petharan Thottam, Bhavani", icon: <Sun size={32} className="text-[#E8A25D]" />, img: "/KMPMahal.jpeg" },
+              { type: "Wedding Ceremony", date: "March 6, 2026, Friday", time: "07:00 AM - 08:30 AM", venue: "Sangameswarar Temple", loc: "Kooduthurai, Bhavani", icon: <Heart size={24} className="text-[#E8A25D] fill-[#E8A25D]" />, img: "https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&q=80&w=1200" }
             ].map((event, i) => (
               <motion.div key={i} variants={fadeInUp} whileHover={{ y: -10, transition: { type: "spring", stiffness: 300 } }} className="group relative">
                 <div className="relative overflow-hidden rounded-[2.5rem] bg-[#FDFBF7] border border-[#1B3C40]/5 shadow-2xl shadow-[#1B3C40]/5">
@@ -366,7 +367,8 @@ export default function WeddingInvitation() {
                       <h3 className="text-4xl font-serif">{event.venue}</h3>
                     </div>
                     <div className="space-y-4 pt-4 border-t border-[#1B3C40]/5">
-                      <div className="flex items-center gap-4 text-[#1B3C40]/60"><CalendarDays size={18} /><span className="text-sm font-medium">{event.date} • {event.time}</span></div>
+                      <div className="flex items-center gap-4 text-[#1B3C40]/60"><CalendarDays size={18} /><span className="text-sm font-medium">{event.date}</span></div>
+                      <div className="flex items-center gap-4 text-[#1B3C40]/60"><Clock size={18} /><span className="text-sm font-medium">{event.time}</span></div>
                       <div className="flex items-center gap-4 text-[#1B3C40]/60"><MapPin size={18} /><span className="text-sm font-medium">{event.loc}</span></div>
                     </div>
                     <Button className="w-full bg-[#1B3C40] hover:bg-[#2A5257] text-white rounded-full h-14 tracking-[0.3em] text-[10px] font-bold transition-all duration-500 shadow-lg shadow-[#1B3C40]/20">GET DIRECTIONS</Button>
@@ -393,22 +395,28 @@ export default function WeddingInvitation() {
 
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }} variants={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 auto-rows-[300px] md:auto-rows-[400px]">
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="col-span-2 row-span-2 overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="/Image1.png" alt="Gallery 1" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image4.jpg" alt="Gallery 1" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="col-span-2 overflow-hidden rounded-[2.5rem] shadow-xl group">
               <img src="/Image3.jpg" alt="Gallery 3" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="/Image4.jpg" alt="Gallery 4" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image1.jpg" alt="Gallery 4" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
               <img src="/Image5.jpg" alt="Gallery 5" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="/Image6.jpg" alt="Gallery 6" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image0.jpg" alt="Gallery 6" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
             <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
-              <img src="/Image7.png" alt="Gallery 7" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <img src="/Image7.jpg" alt="Gallery 7" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </motion.div>
+            <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
+              <img src="/Image10.jpg" alt="Gallery 8" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            </motion.div>
+            <motion.div variants={fadeInScale} whileHover={{ y: -10, scale: 1.02 }} transition={{ type: "spring", stiffness: 300 }} className="overflow-hidden rounded-[2.5rem] shadow-xl group">
+              <img src="/Image8.jpg" alt="Gallery 9" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </motion.div>
           </motion.div>
         </div>
@@ -464,21 +472,6 @@ export default function WeddingInvitation() {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 0.6 }} className="mt-10 space-y-4">
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-3 px-6 py-4 bg-white rounded-2xl border border-[#1B3C40]/5 shadow-sm">
-                <Bus size={18} className="text-[#E8A25D]" />
-                <p className="text-sm text-[#1B3C40]/80 font-medium">Local Bus Numbers to Bhavani Bus Stand: <span className="font-bold text-[#1B3C40]">5</span> or <span className="font-bold text-[#1B3C40]">3</span></p>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full border border-[#1B3C40]/5 shadow-sm">
-                <Compass size={16} className="text-[#E8A25D]" />
-                <p className="text-sm text-[#1B3C40]/70">Local buses and autos are frequently available from Bhavani Bus Stand.</p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </section>
