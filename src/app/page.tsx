@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { 
-  Heart, 
-  MapPin, 
+import {
+  Heart,
+  MapPin,
   Waves,
   Navigation2,
   Quote,
@@ -49,35 +49,35 @@ const NRLogo = ({ className = "" }: { className?: string }) => (
   <div className={`relative group ${className}`}>
     <div className="relative flex items-center justify-center p-6 md:p-8">
       <div className="absolute inset-0 bg-gradient-to-tr from-[#E8A25D]/10 to-[#B9E2E5]/10 rounded-full blur-2xl group-hover:opacity-100 transition-opacity duration-1000 opacity-0" />
-      <motion.div 
+      <motion.div
         className="absolute inset-2 border-[0.5px] border-white/20 rounded-full"
         animate={{ rotate: 360 }}
         transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
       />
       <div className="relative z-10 flex items-center justify-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center"
         >
           <span className="text-4xl md:text-5xl font-serif font-light text-white tracking-tighter">N</span>
           <div className="flex flex-col items-center mx-3">
-             <motion.div 
-               animate={{ height: [0, 16, 0] }}
-               transition={{ duration: 4, repeat: Infinity }}
-               className="w-[0.5px] bg-[#E8A25D]/60" 
-             />
-             <span className="text-[#E8A25D] font-accent text-2xl leading-none my-1">&</span>
-             <motion.div 
-               animate={{ height: [0, 16, 0] }}
-               transition={{ duration: 4, repeat: Infinity, delay: 2 }}
-               className="w-[0.5px] bg-[#E8A25D]/60" 
-             />
+            <motion.div
+              animate={{ height: [0, 16, 0] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              className="w-[0.5px] bg-[#E8A25D]/60"
+            />
+            <span className="text-[#E8A25D] font-accent text-2xl leading-none my-1">&</span>
+            <motion.div
+              animate={{ height: [0, 16, 0] }}
+              transition={{ duration: 4, repeat: Infinity, delay: 2 }}
+              className="w-[0.5px] bg-[#E8A25D]/60"
+            />
           </div>
           <span className="text-4xl md:text-5xl font-serif font-light text-white tracking-tighter">R</span>
         </motion.div>
       </div>
-      <motion.div 
+      <motion.div
         className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1"
         animate={{ rotate: 360 }}
         style={{ originY: "40px" }}
@@ -117,18 +117,18 @@ const slideInRight = {
 export default function WeddingInvitation() {
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  
+
   const [metCountdown, setMetCountdown] = useState<number>(0);
   const [weddingCountdown, setWeddingCountdown] = useState<number>(0);
   const [metLabel, setMetLabel] = useState("Until Our Tides Meet");
-  
+
   const [wishes, setWishes] = useState<Wish[]>([]);
   const [newName, setNewName] = useState("");
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSending, setIsSending] = useState(false);
 
-  const metDate = new Date(2025, 10, 14).getTime(); 
+  const metDate = new Date(2025, 10, 14).getTime();
   const weddingDate = new Date(2026, 2, 5).getTime();
 
   useEffect(() => {
@@ -168,7 +168,7 @@ export default function WeddingInvitation() {
 
   const handleSendWish = async () => {
     if (!newName.trim() || !newMessage.trim()) return;
-    
+
     setIsSending(true);
     try {
       const res = await fetch("/api/guestbook", {
@@ -278,7 +278,7 @@ export default function WeddingInvitation() {
     <div className="min-h-screen bg-[#FDFBF7] text-[#1B3C40] selection:bg-[#B9E2E5] selection:text-[#1B3C40] overflow-x-hidden font-sans">
       <Grain />
       <ScrollToTop />
-      
+
       {/* Hero Section */}
       <section className="relative h-[110vh] flex items-center justify-center overflow-hidden">
         <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
@@ -292,11 +292,26 @@ export default function WeddingInvitation() {
               <NRLogo />
             </motion.div>
 
-            <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} className="flex items-center gap-4 text-[#E8A25D] mt-2 md:mt-4">
-              <div className="h-px w-6 md:w-10 bg-gradient-to-r from-transparent via-[#E8A25D]/60 to-[#E8A25D]/60" />
-              <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/90 shadow-sm">See you where the sea meets the sand.</span>
-              <div className="h-px w-6 md:w-10 bg-gradient-to-l from-transparent via-[#E8A25D]/60 to-[#E8A25D]/60" />
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 }
+              }}
+              className="flex flex-col items-center gap-2 mt-2 md:mt-4 text-[#E8A25D]"
+            >
+              <div className="flex items-center gap-4">
+                <div className="h-px w-6 md:w-10 bg-gradient-to-r from-transparent via-[#E8A25D]/60 to-[#E8A25D]/60" />
+                <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/90 text-center">
+                  A new beginning, written by the waves.
+                </span>
+                <div className="h-px w-6 md:w-10 bg-gradient-to-l from-transparent via-[#E8A25D]/60 to-[#E8A25D]/60" />
+              </div>
+
+              <span className="text-[9px] md:text-[11px] font-bold uppercase tracking-[0.4em] md:tracking-[0.6em] text-white/90 text-center">
+                Two hearts.. One horizon.
+              </span>
             </motion.div>
+
 
             <motion.div variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1 } }} transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }} className="relative">
               <h1 className="text-[3.5rem] md:text-[7.5rem] font-serif leading-none tracking-tight text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
@@ -320,8 +335,8 @@ export default function WeddingInvitation() {
                 <div className="space-y-1">
                   <p className="text-2xl md:text-4xl font-serif tracking-[0.1em] text-white drop-shadow-2xl">March 5 2026, Thursday</p>
                   <div className="flex items-center justify-center gap-2 md:gap-3">
-                    <MapPin size={14} className="text-[#B9E2E5]" />
-                    <p className="text-[10px] md:text-[14px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-[#B9E2E5] drop-shadow-lg">Bhavani • Tamil Nadu</p>
+                    <MapPin size={14} className="text-[#E1D9D1]" />
+                    <p className="text-[10px] md:text-[14px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-[#2E8B57] drop-shadow-lg">Bhavani • Tamil Nadu</p>
                   </div>
                 </div>
                 <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-[#E8A25D] text-[#1B3C40] text-[8px] md:text-[9px] font-black uppercase tracking-[0.3em] px-5 md:px-6 py-1 rounded-full shadow-lg">Save the Date</div>
@@ -575,12 +590,27 @@ export default function WeddingInvitation() {
       {/* Footer */}
       <footer className="py-12 bg-[#FDFBF7] text-[#1B3C40] relative border-t border-[#1B3C40]/5">
         <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="flex flex-col items-center gap-4">
-            <h2 className="text-4xl md:text-5xl font-serif italic font-light tracking-widest opacity-80">NaveeRitzz</h2>
-            <motion.div animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.8, 0.4] }} transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }} className="text-[#E8A25D]"><Heart size={20} fill="currentColor" /></motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center gap-4">
+            <h2
+              className="text-4xl md:text-5xl italic font-light tracking-widest opacity-80"
+              style={{ fontFamily: "'Cormorant Garamond', serif" }}>NaveeRitzz
+              </h2>
+
+            <motion.div
+              animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.8, 0.4] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="text-purple-600">
+              <Heart size={20} fill="currentColor" />
+            </motion.div>
           </motion.div>
         </div>
       </footer>
+
 
       <style jsx global>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Great+Vibes&display=swap');
