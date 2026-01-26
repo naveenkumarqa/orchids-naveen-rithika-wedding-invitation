@@ -1513,15 +1513,27 @@ export default function WeddingInvitation() {
             transition={{ duration: 0.8 }}
             className="flex flex-col items-center gap-4"
           >
-            <h2 className="text-4xl md:text-5xl italic font-light tracking-widest opacity-80 font-serif">
+            <motion.h2
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 0.85, y: 0 }}
+              transition={{ duration: 1.2, ease: "easeOut" }}
+              viewport={{ once: true }}
+              style={{
+                fontFamily: "'Great Vibes', cursive",
+                letterSpacing: "0.08em",
+                color: "var(--color-darkTeal)",
+              }}
+              className="text-4xl md:text-4xl"
+            >
               NaveeRitzz
-            </h2>
+            </motion.h2>
+
             <motion.div
               animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.8, 0.4] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              style={{ color: "var(--color-gold)" }}
+              style={{ color: "#7C3AED" }}
             >
-              <Heart size={20} fill="currentColor" />
+              <Heart size={30} fill="currentColor" />
             </motion.div>
           </motion.div>
         </div>
