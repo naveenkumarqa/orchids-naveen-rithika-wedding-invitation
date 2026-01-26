@@ -430,7 +430,9 @@ export default function WeddingInvitation() {
       <ScrollToTop />
 
       {/* Hero Section */}
-      <section className="relative h-[110vh] flex items-center justify-center overflow-hidden">
+      
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pb-24">
+
         <motion.div style={{ y: backgroundY }} className="absolute inset-0 z-0">
           <div
             style={{
@@ -540,9 +542,10 @@ export default function WeddingInvitation() {
             window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
           }
         >
-          <span className="text-[9px] uppercase tracking-[0.4em] text-white/60 font-bold">
-            Scroll to Dive
-          </span>
+  <span className="text-[12px] uppercase tracking-[0.45em] font-bold text-white drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]">
+    Scroll to Dive
+  </span>
+
           <div
             style={{
               background:
