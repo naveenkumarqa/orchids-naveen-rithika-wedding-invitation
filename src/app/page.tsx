@@ -554,7 +554,7 @@ export default function WeddingInvitation() {
       </section>
 
       {/* Intro Section */}
-        <section className="py-40 relative overflow-hidden bg-[rgba(27,60,64,0.05)]">
+      <section className="py-40 relative overflow-hidden bg-[rgba(27,60,64,0.05)]">
         <div
           style={{ backgroundColor: "rgba(185, 226, 229, 0.1)" }}
           className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[100px] -mr-32"
@@ -610,76 +610,79 @@ export default function WeddingInvitation() {
               beautiful waters of forever.
             </motion.p>
           </motion.div>
-          
-<motion.div
-  variants={scaleIn}
-  className="relative mt-8 md:mt-12 flex justify-center"
->
-  {/* Outer rotating rings */}
-  <div className="absolute inset-0 -m-10 border border-white/15 rounded-full animate-[spin_22s_linear_infinite] hidden md:block" />
-  <div
-    style={{ borderColor: "rgba(232,162,93,0.25)" }}
-    className="absolute inset-0 -m-5 border rounded-full animate-[spin_16s_linear_infinite_reverse] hidden md:block"
-  />
 
-  {/* Glass Card */}
- <div className="relative max-w-[90vw] md:max-w-none bg-white/20 backdrop-blur-[50px] border border-white/20 rounded-[2.8rem] px-10 py-8 md:px-12 md:py-10 space-y-5 shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition-all duration-500">
+          <motion.div
+            variants={scaleIn}
+            className="relative mt-8 md:mt-12 flex justify-center"
+          >
+            {/* Outer rotating rings */}
+            <div className="absolute inset-0 -m-10 border border-white/15 rounded-full animate-[spin_22s_linear_infinite] hidden md:block" />
+            <div
+              style={{ borderColor: "rgba(232,162,93,0.25)" }}
+              className="absolute inset-0 -m-5 border rounded-full animate-[spin_16s_linear_infinite_reverse] hidden md:block"
+            />
 
+            {/* Glass Card */}
+            <div className="relative max-w-[90vw] md:max-w-none bg-white/20 backdrop-blur-[50px] border border-white/20 rounded-[2.8rem] px-10 py-8 md:px-12 md:py-10 space-y-5 shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition-all duration-500">
+              {/* Glass highlight */}
+              <div className="absolute inset-0 rounded-[2.8rem] bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
 
-    {/* Glass highlight */}
- <div className="absolute inset-0 rounded-[2.8rem] bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
+              {/* Top icons */}
+              <div className="flex items-center justify-center gap-4">
+                <Heart
+                  size={18}
+                  style={{
+                    color: "var(--color-gold)",
+                    fill: "var(--color-gold)",
+                  }}
+                />
+                <div
+                  style={{
+                    background:
+                      "linear-gradient(to right, transparent, var(--color-gold), transparent)",
+                  }}
+                  className="h-px w-10"
+                />
+                <Compass
+                  size={20}
+                  style={{ color: "var(--color-gold)" }}
+                  className="animate-[spin_4s_linear_infinite]"
+                />
+              </div>
 
+              {/* Date & place */}
+              <div className="space-y-2 text-center">
+                <p className="text-2xl md:text-4xl font-serif tracking-[0.18em] text-[var(--color-darkTeal)] drop-shadow-2xl">
+                  March 5 2026, Thursday
+                </p>
 
-    {/* Top icons */}
-    <div className="flex items-center justify-center gap-4">
-      <Heart size={18} style={{ color: "var(--color-gold)", fill: "var(--color-gold)" }} />
-      <div
-        style={{ background: "linear-gradient(to right, transparent, var(--color-gold), transparent)" }}
-        className="h-px w-10"
-      />
-      <Compass
-        size={20}
-        style={{ color: "var(--color-gold)" }}
-        className="animate-[spin_4s_linear_infinite]"
-      />
-    </div>
+                <div className="flex items-center justify-center gap-3">
+                  <MapPin size={15} style={{ color: "var(--color-teal)" }} />
+                  <p
+                    style={{ color: "var(--color-teal)" }}
+                    className="text-[10px] md:text-[14px] uppercase tracking-[0.35em] font-bold"
+                  >
+                    Bhavani • Tamil Nadu
+                  </p>
+                </div>
+              </div>
 
-    {/* Date & place */}
-    <div className="space-y-2 text-center">
-      <p className="text-2xl md:text-4xl font-serif tracking-[0.18em] text-[var(--color-darkTeal)] drop-shadow-2xl">
-        March 5 2026, Thursday
-      </p>
-
-      <div className="flex items-center justify-center gap-3">
-        <MapPin size={15} style={{ color: "var(--color-teal)" }} />
-        <p
-          style={{ color: "var(--color-teal)" }}
-          className="text-[10px] md:text-[14px] uppercase tracking-[0.35em] font-bold"
-        >
-          Bhavani • Tamil Nadu
-        </p>
-      </div>
-    </div>
-
-{/* Save the Date – Calendar Style Button */}
-<div className="pt-4 flex justify-center">
-  <motion.div
-    whileTap={{ scale: 0.95 }}         // click animation
-    whileHover={{ scale: 1.05 }}       // subtle hover animation
-    className="relative w-max rounded-lg border border-white/20 shadow-[0_5px_15px_rgba(0,0,0,0.15)] 
+              {/* Save the Date – Calendar Style Button */}
+              <div className="pt-4 flex justify-center">
+                <motion.div
+                  whileTap={{ scale: 0.95 }} // click animation
+                  whileHover={{ scale: 1.05 }} // subtle hover animation
+                  className="relative w-max rounded-lg border border-white/20 shadow-[0_5px_15px_rgba(0,0,0,0.15)] 
                bg-teal-500/80 backdrop-blur-sm cursor-pointer overflow-hidden"
-  >
-    {/* Button Text */}
-    <div className="px-6 py-2 text-[11px] md:text-[12px] font-black uppercase tracking-[0.35em] text-white text-center relative z-10">
-      Save the Date
-    </div>
-  </motion.div>
-</div>
-
-  </div>
-</motion.div>
-
-
+                >
+                  {/* Button Text */}
+                  <div className="px-6 py-2 text-[11px] md:text-[12px] font-black uppercase tracking-[0.35em] text-white text-center relative z-10">
+                    Save the Date
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -714,12 +717,25 @@ export default function WeddingInvitation() {
                 variants={fadeInScale}
                 className="flex flex-col gap-2"
               >
-                <span
+                <motion.span
                   style={{ color: "var(--color-gold)" }}
-                  className="text-8xl md:text-[10rem] font-serif font-light leading-none"
+                  className="text-8xl md:text-[10rem] font-serif font-light leading-none inline-block"
+                  initial={{ scale: 1, opacity: 0.85 }}
+                  whileInView={{
+                    scale: [1, 1.08, 1],
+                    opacity: [0.85, 1, 0.85],
+                  }}
+                  viewport={{ once: false }}
+                  transition={{
+                    duration: 1.2,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                  }}
                 >
                   {metCountdown}
-                </span>
+                </motion.span>
+
                 <span
                   style={{ color: "rgba(27, 60, 64, 0.4)" }}
                   className="text-sm uppercase tracking-[0.6em] font-bold"
@@ -763,12 +779,25 @@ export default function WeddingInvitation() {
                 variants={fadeInScale}
                 className="flex flex-col gap-2"
               >
-                <span
+                <motion.span
                   style={{ color: "var(--color-teal)" }}
-                  className="text-8xl md:text-[10rem] font-serif font-light leading-none"
+                  className="text-8xl md:text-[10rem] font-serif font-light leading-none inline-block"
+                  initial={{ scale: 1, opacity: 0.85 }}
+                  whileInView={{
+                    scale: [1, 1.08, 1],
+                    opacity: [0.85, 1, 0.85],
+                  }}
+                  viewport={{ once: false }}
+                  transition={{
+                    duration: 1.2,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                  }}
                 >
                   {weddingCountdown}
-                </span>
+                </motion.span>
+
                 <span
                   style={{ color: "rgba(27, 60, 64, 0.4)" }}
                   className="text-sm uppercase tracking-[0.6em] font-bold"
