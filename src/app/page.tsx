@@ -150,6 +150,7 @@ export default function WeddingInvitation() {
   const [newMessage, setNewMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSending, setIsSending] = useState(false);
+  const [showCalendarModal, setShowCalendarModal] = useState(false);
 
   const metDate = new Date(2025, 10, 14).getTime();
   const weddingDate = new Date(2026, 2, 5).getTime();
@@ -215,6 +216,39 @@ export default function WeddingInvitation() {
     } finally {
       setIsSending(false);
     }
+  };
+
+  const generateICS = () => {
+    const title = "NaveeRitzz Wedding";
+    const location = "Bhavani, Tamilnadu";
+    const description = "Join us to celebrate Naveen and Rithika's wedding.";
+    const startDate = "20260305T133000Z"; // 7:00 PM IST
+    const endDate = "20260305T153000Z"; // 9:00 PM IST
+    const uid = `naveeritzz-wedding-${Date.now()}@naveeritzz.com`;
+    const dtstamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+    const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//NaveeRitzz//Wedding//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:${uid}
+DTSTART:${startDate}
+DTEND:${endDate}
+DTSTAMP:${dtstamp}
+CREATED:${dtstamp}
+DESCRIPTION:${description}
+LOCATION:${location}
+SUMMARY:${title}
+END:VEVENT
+END:VCALENDAR`;
+
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "NaveeRitzz-Wedding.ics";
+    link.click();
+    URL.revokeObjectURL(link.href);
   };
 
   const FloatingElement = ({
@@ -635,15 +669,22 @@ export default function WeddingInvitation() {
               className="absolute inset-0 -m-5 border rounded-full animate-[spin_16s_linear_infinite_reverse] hidden md:block"
             />
 
-            {/* Glass Card */}
-            <div className="relative max-w-[90vw] md:max-w-none bg-white/20 backdrop-blur-[50px] border border-white/20 rounded-[2.8rem] px-10 py-8 md:px-12 md:py-10 space-y-5 shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition-all duration-500">
-              {/* Glass highlight */}
+            {/* Semi-Solid Card with Animations */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              whileHover={{ y: -12, transition: { type: "spring", stiffness: 300 } }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              style={{ backgroundColor: "rgba(185, 226, 229, 0.5)" }}
+              className="relative max-w-[90vw] md:max-w-none border border-white/40 rounded-[2.8rem] px-10 py-8 md:px-12 md:py-10 space-y-5 shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-500">
+              {/* Card highlight */}
               <div className="absolute inset-0 rounded-[2.8rem] bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none" />
 
               {/* Top icons */}
               <div className="flex items-center justify-center gap-4">
                 <Heart
-                  size={18}
+                  size={20}
                   style={{
                     color: "var(--color-gold)",
                     fill: "var(--color-gold)",
@@ -670,9 +711,9 @@ export default function WeddingInvitation() {
                 </p>
 
                 <div className="flex items-center justify-center gap-3">
-                  <MapPin size={15} style={{ color: "var(--color-teal)" }} />
+                  <MapPin size={15} style={{ color: "var(--color-darkTeal)" }} />
                   <p
-                    style={{ color: "var(--color-teal)" }}
+                    style={{ color: "var(--color-darkTeal)" }}
                     className="text-[10px] md:text-[14px] uppercase tracking-[0.35em] font-bold"
                   >
                     Bhavani • Tamil Nadu
@@ -688,6 +729,7 @@ export default function WeddingInvitation() {
                   style={{ backgroundColor: "var(--color-gold)" }}
                   className="relative w-max rounded-lg border border-white/20 shadow-[0_5px_15px_rgba(0,0,0,0.15)] 
                backdrop-blur-sm cursor-pointer overflow-hidden"
+                  onClick={() => setShowCalendarModal(true)}
                 >
                   {/* Button Text */}
                   <div className="px-6 py-2 text-[11px] md:text-[12px] font-black uppercase tracking-[0.35em] text-white text-center relative z-10">
@@ -695,10 +737,68 @@ export default function WeddingInvitation() {
                   </div>
                 </motion.div>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
+
+      {/* Calendar Modal */}
+      {showCalendarModal && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setShowCalendarModal(false)}
+          />
+          <div className="relative z-10 bg-white rounded-2xl p-6 w-[90%] max-w-md shadow-lg">
+            <h3 className="text-xl font-semibold mb-2">Add to Calendar</h3>
+            <p className="text-sm mb-4" style={{ color: "rgba(27,60,64,0.8)" }}>
+              Add "NaveeRitzz Wedding" to your Google Calendar for March 5, 2026 at 7:00 PM IST.
+            </p>
+            <div className="flex flex-col gap-3">
+              <a
+                className="w-full text-center px-4 py-2 bg-[#2A8C9A] text-white rounded-lg font-medium"
+                href={
+                  (() => {
+                    const title = "NaveeRitzz Wedding";
+                    const location = "Bhavani, Tamilnadu";
+                    const details = "Join us to celebrate Naveen and Rithika's wedding.";
+                    const start = "20260305T133000Z"; // 7:00 PM IST -> 13:30 UTC
+                    const end = "20260305T153000Z"; // 9:00 PM IST -> 15:30 UTC
+                    return (
+                      "https://www.google.com/calendar/render?action=TEMPLATE" +
+                      `&text=${encodeURIComponent(title)}` +
+                      `&dates=${start}/${end}` +
+                      `&details=${encodeURIComponent(details)}` +
+                      `&location=${encodeURIComponent(location)}` +
+                      `&ctz=Asia/Kolkata`
+                    );
+                  })()
+                }
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setShowCalendarModal(false)}
+              >
+                Add to Google Calendar
+              </a>
+              <button
+                className="w-full px-4 py-2 bg-[#E8A25D] text-white rounded-lg font-medium hover:opacity-90"
+                onClick={() => {
+                  generateICS();
+                  setShowCalendarModal(false);
+                }}
+              >
+                Download .ics File
+              </button>
+              <button
+                className="w-full px-4 py-2 border rounded-lg"
+                onClick={() => setShowCalendarModal(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Counters Section */}
       <section className="py-32 bg-[#F9F7F2] relative overflow-hidden">
