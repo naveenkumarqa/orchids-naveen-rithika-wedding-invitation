@@ -374,7 +374,17 @@ export default function WeddingInvitation() {
             />
           </div>
         </div>
-        <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+        <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+          <div className="absolute left-4 right-4 top-3 bottom-3 rounded-[2rem] bg-[var(--color-gold)] -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out opacity-20 shadow-[0_8px_30px_rgba(232,162,93,0.12)]" />
+          {isPopping && !disabled && (
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0.7 }}
+              animate={{ scale: 5, opacity: 0 }}
+              transition={{ duration: 1.0, ease: "easeOut" }}
+              className="absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-[var(--color-teal)] rounded-full pointer-events-none opacity-60 shadow-[0_12px_40px_rgba(185,226,229,0.18)]"
+            />
+          )}
+        </div>
       </motion.button>
     );
   };
@@ -1359,7 +1369,7 @@ export default function WeddingInvitation() {
                   Messages in the Tide
                 </span>
                 <h2 className="text-5xl md:text-7xl font-serif">
-                  Send a Wave
+                  Leave a Ripple
                 </h2>
                 <p
                   style={{ color: "rgba(27, 60, 64, 0.6)" }}
