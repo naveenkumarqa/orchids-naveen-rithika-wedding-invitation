@@ -675,8 +675,9 @@ export default function WeddingInvitation() {
                 <motion.div
                   whileTap={{ scale: 0.95 }} // click animation
                   whileHover={{ scale: 1.05 }} // subtle hover animation
+                  style={{ backgroundColor: "var(--color-gold)" }}
                   className="relative w-max rounded-lg border border-white/20 shadow-[0_5px_15px_rgba(0,0,0,0.15)] 
-               bg-teal-500/80 backdrop-blur-sm cursor-pointer overflow-hidden"
+               backdrop-blur-sm cursor-pointer overflow-hidden"
                 >
                   {/* Button Text */}
                   <div className="px-6 py-2 text-[11px] md:text-[12px] font-black uppercase tracking-[0.35em] text-white text-center relative z-10">
@@ -841,8 +842,15 @@ export default function WeddingInvitation() {
               variants={fadeInUp}
               className="text-5xl md:text-7xl font-serif"
             >
-              Coastal Celebrations
+              Moments to Celebrate
             </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              style={{ color: "rgba(27, 60, 64, 0.6)" }}
+              className="text-lg font-light italic max-w-xl mx-auto"
+            >
+              The days we’ve been waiting to celebrate with you.
+            </motion.p>
           </motion.div>
 
           <motion.div
@@ -863,7 +871,7 @@ export default function WeddingInvitation() {
                 img: "/KMPMahal.jpeg",
               },
               {
-                type: "Wedding Ceremony",
+                type: "Where We Tie the Knot",
                 date: "March 6, 2026, Friday",
                 time: "07:00 AM - 08:30 AM",
                 venue: "Sangameswarar Temple",
@@ -916,7 +924,7 @@ export default function WeddingInvitation() {
                     </div>
                     <div className="space-y-2">
                       <span
-                        style={{ color: "var(--color-teal)" }}
+                        style={{ color: "var(--color-gold)" }}
                         className="text-[10px] font-bold uppercase tracking-[0.4em]"
                       >
                         {event.type}
@@ -999,8 +1007,8 @@ export default function WeddingInvitation() {
                 style={{ color: "rgba(27, 60, 64, 0.6)" }}
                 className="font-light italic text-lg leading-relaxed"
               >
-                "Each photo is a seashell we've collected along the shore of our
-                love story—tiny treasures that tell the tale of our tides."
+                Each photo is a seashell we've collected along the shore of our
+                love story—tiny treasures that tell the tale of our tides.
               </p>
             </motion.div>
           </motion.div>
@@ -1132,7 +1140,7 @@ export default function WeddingInvitation() {
           >
             <motion.span
               variants={fadeInUp}
-              style={{ color: "var(--color-teal)" }}
+              style={{ color: "var(--color-gold)" }}
               className="text-[10px] font-bold uppercase tracking-[0.8em]"
             >
               Travel Guide
@@ -1141,7 +1149,7 @@ export default function WeddingInvitation() {
               variants={fadeInUp}
               className="text-5xl md:text-7xl font-serif"
             >
-              How to Reach
+              Plan your Voyage
             </motion.h2>
             <motion.p
               variants={fadeInUp}
@@ -1207,7 +1215,7 @@ export default function WeddingInvitation() {
                     style={{ color: "rgba(27, 60, 64, 0.7)" }}
                     className="text-[15px]"
                   >
-                    From the bypass, take a local bus to Bhavani Bus Stand
+                    From the Bypass, take a local bus to Bhavani Bus Stand
                   </p>
                 </div>
                 <Button
@@ -1345,20 +1353,20 @@ export default function WeddingInvitation() {
             >
               <div className="space-y-6 relative">
                 <span
-                  style={{ color: "var(--color-teal)" }}
+                  style={{ color: "var(--color-gold)" }}
                   className="text-[10px] font-bold uppercase tracking-[0.8em]"
                 >
-                  Driftwood Messages
+                  Messages in the Tide
                 </span>
                 <h2 className="text-5xl md:text-7xl font-serif">
-                  Leave a Ripple
+                  Send a Wave
                 </h2>
                 <p
                   style={{ color: "rgba(27, 60, 64, 0.6)" }}
                   className="text-lg font-light italic max-w-md"
                 >
-                  Your blessings are the wind in our sails. Send us a message to
-                  wash ashore our new beginning.
+                  Your blessings are the wind in our sails. 
+                  Send us a message to our new beginning.
                 </p>
                 <div className="relative w-full h-24 -mt-8 overflow-hidden pointer-events-none">
                   <motion.div
