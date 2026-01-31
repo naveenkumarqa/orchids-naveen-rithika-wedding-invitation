@@ -1221,7 +1221,7 @@ END:VCALENDAR`;
               className="overflow-hidden rounded-[2.5rem] shadow-xl group"
             >
               <img
-                src="/Image8.jpg"
+                src="/Image2.jpg"
                 alt="Gallery 9"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
